@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Physics Made Easy</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Electric Circuit Intro -->
+  <div class="electric-intro" id="electricIntro">
+    <svg id="electricCircuit" width="100vw" height="100vh" viewBox="0 0 800 450">
+      <!-- Draw wires -->
+      <polyline id="wirePath"
+        points="60,350 175,350 175,100 625,100 625,350 740,350"
+        fill="none" stroke="#5cf4ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Battery Body -->
+      <rect x="45" y="325" width="30" height="50" rx="7" fill="#22262a" stroke="#fed766" stroke-width="3"/>
+      <!-- Battery Lines (+ and -) -->
+      <line x1="45" y1="337" x2="35" y2="337" stroke="#fed766" stroke-width="3"/>
+      <line x1="75" y1="362" x2="85" y2="362" stroke="#fed766" stroke-width="3"/>
+      <!-- Bulb Base -->
+      <ellipse cx="740" cy="350" rx="24" ry="14" fill="#888e96" />
+      <!-- Bulb Glass -->
+      <circle id="bulbGlass" cx="740" cy="326" r="30"
+        fill="#111c20" stroke="#aaa" stroke-width="2"/>
+      <!-- Bulb filament -->
+      <polyline id="filament"
+        points="740,350 740,340 735,334 745,334 740,340"
+        fill="none" stroke="#fed766" stroke-width="2" opacity="0"/>
+      <!-- Sparks -->
+      <g id="sparkGroup"></g>
+    </svg>
+    <div class="darkroom"></div>
+    <div class="intro-text" id="introText">Physics Made Easy</div>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <header>
+    <div class="site-title" onclick="showHome()">⚡ Physics Made Easy</div>
+    <button class="back-btn" id="backBtn" onclick="showHome()">← Topics</button>
+  </header>
+
+  <main id="mainUI">
+    <section class="topic-grid" id="topicGrid">
+      <div class="topic-card" data-section="humanEye"
+           onclick="showTopic('humanEye', '#06fefa')">
+        <div class="card-svg-icon eye"></div>
+        <div>
+          <h3>The Human Eye</h3>
+          <p>Structure, working, accommodation, persistence</p>
+        </div>
+      </div>
+      <div class="topic-card" data-section="defects"
+           onclick="showTopic('defects', '#eeff00')">
+        <div class="card-svg-icon lens"></div>
+        <div>
+          <h3>Eye Defects & Correction</h3>
+          <p>Myopia, hypermetropia, presbyopia; animated remedies</p>
+        </div>
+      </div>
+      <div class="topic-card" data-section="prismDispersion"
+           onclick="showTopic('prismDispersion', '#4bfaff')">
+        <div class="card-svg-icon prism"></div>
+        <div>
+          <h3>Prism, Dispersion & Rainbow</h3>
+          <p>Refraction, white light splitting, rainbow animation</p>
+        </div>
+      </div>
+      <div class="topic-card" data-section="atmoRefraction"
+           onclick="showTopic('atmoRefraction', '#90a8ff')">
+        <div class="card-svg-icon atmo"></div>
+        <div>
+          <h3>Atmospheric Refraction</h3>
+          <p>Star twinkle, sunrise/sunset, apparent view</p>
+        </div>
+      </div>
+      <div class="topic-card" data-section="scattering"
+           onclick="showTopic('scattering', '#47b0ff')">
+        <div class="card-svg-icon sky"></div>
+        <div>
+          <h3>Sky Colour & Scattering</h3>
+          <p>Blue sky, red sunset, Tyndall effect demo</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Each Topic's Section (all info and animated diagrams per topic) -->
+    <section class="section-info" id="humanEye">
+      <h2>The Human Eye</h2>
+      <div class="svg-anim" id="animEye"></div>
+      <div class="info">
+        <h3>Parts & How It Works</h3>
+        <ul>
+          <li>Cornea, iris, pupil, lens, retina, optic nerve, vitreous humour</li>
+          <li>Refraction at cornea and lens focuses image on retina</li>
+          <li>Image is inverted; brain interprets as upright</li>
+        </ul>
+        <h3>Accommodation</h3>
+        <p>Lens shape changes for near/far objects (via ciliary muscles)</p>
+        <h3>Persistence of Vision</h3>
+        <p>Image lingers for 1/16 s, explanation with demo animation</p>
+      </div>
+    </section>
+    <section class="section-info" id="defects">
+      <h2>Eye Defects &amp; Corrections</h2>
+      <div class="svg-anim" id="animDefects"></div>
+      <div class="info">
+        <h3>Myopia, Hypermetropia, Presbyopia</h3>
+        <ul>
+          <li>What happens to rays for each case, animation shows focal points</li>
+          <li>Concave, convex, and bifocal lens correction animated</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section-info" id="prismDispersion">
+      <h2>Prism &amp; Dispersion</h2>
+      <div class="svg-anim" id="animPrism"></div>
+      <div class="info">
+        <h3>Prism Refraction</h3>
+        <p>Monochromatic light bends (show with single color arrow)</p>
+        <h3>Dispersion of White Light</h3>
+        <p>Split into seven colours; VIBGYOR rays animated, labels appear</p>
+        <h3>Rainbow Formation</h3>
+        <p>Water drop path, sun rays in/out, reflection/refraction, observer sightlines</p>
+      </div>
+    </section>
+    <section class="section-info" id="atmoRefraction">
+      <h2>Atmospheric Refraction</h2>
+      <div class="svg-anim" id="animAtmo"></div>
+      <div class="info">
+        <h3>Star Twinkling</h3>
+        <p>Layers of "air" animate, star rays seen shifting, positions jumping</p>
+        <h3>Apparent Sunrise/Sunset</h3>
+        <p>Sun’s actual/seen positions, curved orange rays, labels each effect</p>
+      </div>
+    </section>
+    <section class="section-info" id="scattering">
+      <h2>Sky Colour, Tyndall Effect</h2>
+      <div class="svg-anim" id="animScatter"></div>
+      <div class="info">
+        <h3>Blue Sky</h3>
+        <p>Animated air molecules scatter blue more; show observer position</p>
+        <h3>Red Sunset/Sunrise</h3>
+        <p>Longer path, red rays reach eyes, blue scattered away; diagram updates</p>
+        <h3>Tyndall Effect</h3>
+        <p>Light beam in colloidal solution, visible cone formed</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
